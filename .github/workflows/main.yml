@@ -13,6 +13,9 @@ jobs:
 
     steps:
 
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+    
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
@@ -28,8 +31,9 @@ jobs:
 
     - name: Run Linter
       run: |
+        pwd
         # This command finds all Python files recursively and runs flake8 on them
-        find server -name "*.py" -exec flake8 {} +
+        find . -name "*.py" -exec flake8 {} +
         echo "Linted all the python files successfully"
 
   lint_js:
@@ -37,6 +41,9 @@ jobs:
       runs-on: ubuntu-latest
 
       steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
